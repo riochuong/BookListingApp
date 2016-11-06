@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+
+    <!--TITLE-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textStyle="bold|italic"
+        android:id="@+id/title_text"/>
+
+    <!--SUBTITLE-->
+    <LinearLayout
+        style="@style/layout_book_prop">
+
+        <TextView
+            style="@style/text_view_book_props_key_style"
+            android:text="@string/subtitle_key"
+            />
+
+        <TextView
+            style="@style/text_view_book_content_key_style"
+            android:id="@+id/subtitle_text"
+            />
+
+    </LinearLayout>
+    
+    <!--AUTHORS-->
+    <LinearLayout
+        style="@style/layout_book_prop">
+        
+        <TextView
+            style="@style/text_view_book_props_key_style"
+            android:text="@string/author_key"
+           />
+
+        <TextView
+            style="@style/text_view_book_content_key_style"
+            android:id="@+id/authors_text"
+            />
+        
+    </LinearLayout>
+
+    <!--Publisher-->
+    <LinearLayout
+        style="@style/layout_book_prop">
+
+        <TextView
+            style="@style/text_view_book_props_key_style"
+            android:text="@string/author_key"
+            />
+
+        <TextView
+            style="@style/text_view_book_content_key_style"
+            android:id="@+id/publisher_text"
+            />
+
+    </LinearLayout>
+
+    <!--published date-->
+    <LinearLayout
+        style="@style/layout_book_prop">
+
+        <TextView
+            style="@style/text_view_book_props_key_style"
+            android:text="@string/published_date_key"
+            />
+
+        <TextView
+            style="@style/text_view_book_content_key_style"
+            android:id="@+id/published_date_text"
+            />
+    </LinearLayout>
+
+    <!--description-->
+    <LinearLayout
+        style="@style/layout_book_prop">
+
+        <TextView
+            style="@style/text_view_book_props_key_style"
+            android:text="@string/description_key"
+            />
+
+        <TextView
+            style="@style/text_view_book_content_key_style"
+            android:id="@+id/description_text"
+            android:maxLines="5"
+            />
+
+    </LinearLayout>
+
+    <!--identifiers-->
+    <LinearLayout
+        style="@style/layout_book_prop">
+
+        <TextView
+            style="@style/text_view_book_props_key_style"
+            android:text="@string/identifiers_key"
+            />
+
+        <TextView
+            style="@style/text_view_book_content_key_style"
+            android:id="@+id/identifiers_text"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

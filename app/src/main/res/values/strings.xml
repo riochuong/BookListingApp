@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BookListingApp</string>
+    <string name="search_btn_text">SEARCH</string>
+    <string name="ioexception_error_toast">Error On IO Connection. Please check your network</string>
+    <!--TEXT VIEW KEYS-->
+    <string name="author_key">Authors:</string>
+    <string name="publisher_key">Publisher:</string>
+    <string name="subtitle_key">SubTitle:</string>
+    <string name="description_key">Description:</string>
+    <string name="published_date_key">Published Date:</string>
+    <string name="identifiers_key">Identifiers:</string>
+    <string name="no_found">Could not find any volume books that related to the search term</string>
+    <string name="search_info_txt">Please input the title of the book you want to search :)</string>
+    <string name="network_connection_error">Device is not connected to the Internet</string>
+
+
+</resources>
