@@ -20,7 +20,7 @@ import java.util.List;
 public class GoogleBooksHelper {
 
     private static final String SEARCH_QUERY_PRE_FIX
-            = "https://www.googleapis.com/books/v1/volumes?q=";
+            = "https://www.googleapis.com/books/v1/volumes";
 
     private static final String ITEMS_KEY = "items";
     private static final String VOLUME_INFO_KEY = "volumeInfo";
@@ -37,19 +37,18 @@ public class GoogleBooksHelper {
 
 
     public static URL buildSearhCmd(String term) throws MalformedURLException {
-        String searchTerm =  SEARCH_QUERY_PRE_FIX + term.trim();
-        // need to replace spaces with special character.
-        searchTerm = searchTerm.replace(" ",AppConsts.SPACE_REPLACE_CHAR);
-        Uri uri = Uri.parse(searchTerm);
-        return new URL(uri.toString());
+        Uri baseUri = Uri.parse(SEARCH_QUERY_PRE_FIX);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+        uriBuilder.appendQueryParameter("q", term);
+        return new URL(uriBuilder.toString());
     }
 
-    public static List<VolumeBook> parseJsonResponeFromgGoogleBooks(String response)
+    public static ArrayList<VolumeBook> parseJsonResponeFromgGoogleBooks(String response)
             throws JSONException {
 
-        List<VolumeBook> bookList = new ArrayList<>();
+        ArrayList<VolumeBook> bookList = new ArrayList<>();
 
-        if (response == null){
+        if (response == null) {
             return bookList;
         }
 
@@ -74,7 +73,9 @@ public class GoogleBooksHelper {
     public static VolumeBook parseBookFromJson(JSONObject bookItem) throws JSONException {
 
         JSONObject volumeInfo = bookItem.getJSONObject(VOLUME_INFO_KEY);
-        JSONArray authorsArray = volumeInfo.getJSONArray(AUTHORS_INFO_KEY);
+        // use empty list if authors are not available
+        JSONArray authorsArray = volumeInfo.has(AUTHORS_INFO_KEY) ?
+                volumeInfo.getJSONArray(AUTHORS_INFO_KEY) : new JSONArray();
         List<String> authorList = new ArrayList<>();
         String title = volumeInfo.has(TITLE_INFO_KEY) ?
                 volumeInfo.getString(TITLE_INFO_KEY) : NA_KEY;
@@ -82,11 +83,11 @@ public class GoogleBooksHelper {
         String subtitle = (volumeInfo.has(SUBTITLE_INFO_KEY)) ?
                 volumeInfo.getString(SUBTITLE_INFO_KEY) : NA_KEY;
         String publisher = volumeInfo.has(PUBLISHER_INFO_KEY) ?
-                    volumeInfo.getString(PUBLISHER_INFO_KEY): NA_KEY;
+                volumeInfo.getString(PUBLISHER_INFO_KEY) : NA_KEY;
         String description = volumeInfo.has(DESCRIPTION_INFO_KEY) ?
-                    volumeInfo.getString(DESCRIPTION_INFO_KEY) : NA_KEY;
+                volumeInfo.getString(DESCRIPTION_INFO_KEY) : NA_KEY;
         String publishedDate = volumeInfo.has(PUBLISHED_DATE_KEY) ?
-                volumeInfo.getString(PUBLISHED_DATE_KEY):NA_KEY;
+                volumeInfo.getString(PUBLISHED_DATE_KEY) : NA_KEY;
         HashMap<String, String> industryISBNS =
                 parseISBN(
                         (volumeInfo.has(INDUSTRY_IDENTIFIERS_KEY) ?
